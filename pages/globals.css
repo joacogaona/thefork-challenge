@@ -1,0 +1,88 @@
+/**
+ * DO NOT EDIT
+ */
+:root {
+  --color-special-white: white;
+  --color-special-black: black;
+  --color-green-xxs: #e8f0e5;
+  --color-green-xs: #b4cfaa;
+  --color-green-s: #83b073;
+  --color-green-m: #589442;
+  --color-green-l: #437132;
+  --color-green-xl: #28431e;
+  --color-gray-xs: #ecedef;
+  --color-gray-m: #959ba7;
+  --color-gray-xl: #3c4048;
+  --color-red-m: #cb1a23;
+
+  --font-weight-normal: 300;
+  --font-weight-semi-bold: 400;
+  --font-weight-bold: 600;
+
+  --container-padding: 2rem;
+  --container-max-width: calc(62rem + 2 * var(--container-padding));
+}
+
+@font-face {
+  font-family: 'RalewayX';
+  font-weight: 300;
+  font-weight: 'normal';
+  font-display: swap;
+  src: url('/fonts/RalewayX_light.woff2') format('woff2'),
+    url('/fonts/RalewayX_light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'RalewayX';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/RalewayX_regular.woff2') format('woff2'),
+    url('/fonts/RalewayX_regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'RalewayX';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/RalewayX_semiBold.woff2') format('woff2'),
+    url('/fonts/RalewayX_semiBold.woff') format('woff');
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  /* inheriting box-sizing. @see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice */
+  box-sizing: border-box;
+
+  font-family: RalewayX;
+  font-weight: var(--font-weight-normal);
+  line-height: 1.25;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+  --link-color: var(--color-green-m);
+
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  margin-left: 2rem;
+}

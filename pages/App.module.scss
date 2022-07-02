@@ -1,0 +1,39 @@
+/**
+ * DO NOT EDIT
+ */
+.header {
+  --header-bg-color: var(--color-special-white);
+
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.125rem;
+  z-index: 1;
+
+  background-color: var(--header-bg-color);
+  box-shadow: -0.0625rem 0.1875rem 0.375rem rgba(0, 0, 0, 0.12);
+}
+
+.main {
+  min-height: 100vh;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 3rem var(--container-padding);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+
+  font-weight: var(--font-weight-normal);
+}
+
+.footer__logo {
+  vertical-align: middle;
+}
