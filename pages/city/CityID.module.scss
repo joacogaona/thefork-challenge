@@ -1,88 +1,282 @@
-//Header and button
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.main_body{
+/*Auto-layout*/
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 48px;
+position: absolute;
+height: 3524px;
+left: 24px;
+right: 24px;
+top: 128px;
 }
 
 .title{
-    
-  
+/*Auto-layout*/
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 30px;
+width: 327px;
+height: 48px;
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
 }
-.toggle_button_collapsed{
+
+.city_name{
+width: 159px;
+height: 40px;
+/* Web typography/Headlines/Headline */
+font-family: 'RalewayX';
+font-style: normal;
+font-weight: 600;
+font-size: 34px;
+line-height: 40px;
+/* identical to box height, or 118% */
+font-feature-settings: 'pnum' on, 'lnum' on;
+/* Specials/Black */
+color: #000000;
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+}
+
+.toggle_button{
+    display: flex;
     flex-direction: row;
-    padding: 0;
-border: none;
-background: none;
-> p{
-    display: inline;
-    
-}
+    justify-content: center;
+    align-items: center;
+    padding: 13px 24px;
+    gap: 8px;
+    width: 138px;
+    height: 48px;
+    /* UI/Backgrounds/Transparent */
+    border-radius: 4px;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+       
+    border: none;
+    background: none;
+        > p{
+        display: inline;
+        }
+       
+    }
+.toggle_button_collapsed{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 24px;
+    gap: 8px;
+    width: 138px;
+    height: 48px;
+    /* UI/Backgrounds/Transparent */
+    border-radius: 4px;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+       
+    border: none;
+    background: none;
+        > p{
+        display: inline;
+        }
 > svg{
     transform: rotateX(180deg);
 }
  
 }
 
-.toggle_button{
-    flex-direction: row;
-    padding: 0;
-    border: none;
-    background: none;
-    > p{
-    display: inline;
-    }
-   
+.toggle_button_text{
+ /* Buttons/Medium */
+font-family: 'RalewayX';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height, or 138% */
+text-align: right;
+text-transform: uppercase;
+/* Green/4. Green M */
+color: #589442;
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
 }
 
+.toggle_button_icon{
 
-//Cities container and cards
+}
+//Cities container and cards/////////////////////////////////////////////////////////////
 
-.cities_container_hidden{
+.cities_section_collapsed{
     display: none;
 }
 
-.cities_container{
+.cities_section{
+width: 100%;
+display: flex;
+flex-direction: column;
 
+}
+
+
+.city_card{
+    position: relative;
+    width: 90%;
+    height: 30vh;
+    border-radius: 8px;
+    margin-top: 2rem;
+    text-align: center;
+    color: white;
+    margin-left: 5%;
+    }
+
+
+.city_card_title{
+     position: absolute;
+    font-weight: 400;
+    top: 85%;
+    left: 5%;
+    z-index: 2;
     
 }
 
-.city_card{
-position: relative;
-width: 90%;
-height: 30vh;
-border-radius: 8px;
-margin-top: 2rem;
-text-align: center;
-color: white;
-}
-.city_image{
-    border-radius: 8px;   
-}
-
-.image_gradient{
+.city_card_gradient{
     position: absolute;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
     border-radius: 8px;
 width: 100%;
 height: 100%;
 z-index: 1;
-
 }
-.card_title{
-    position: absolute;
-    font-weight: 400;
-    top: 85%;
-    left: 5%;
-    z-index: 2;
 
+.city_card_image{
+    border-radius: 8px;   
+    max-height: 100%;
 }
+
+///////////////////////////////////////////////////////////
+
+// .cities_section_collapsed{
+//     display: none;
+// }
+
+// .cities_section{
+//     /* Auto layout */
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     padding: 0px;
+//     gap: 16px;
+//     width: 327px;
+//     height: 764px;
+//     /* Inside auto layout */
+//     flex: none;
+//     order: 1;
+//     align-self: stretch;
+//     flex-grow: 0;
+//     }
+
+// .city_card{
+//     width: 327px;
+//     height: 244px;
+//     /* Specials/White */
+//     background: #FFFFFF;
+//     /* Inside auto layout */
+//     flex: none;
+//     order: 0;
+//     align-self: stretch;
+//     flex-grow: 0;
+//     }
+
+    
+// .city_card_title{
+   
+//     position: absolute;
+//     height: 28px;
+//     left: 20px;
+//     right: 20px;
+//     bottom: 32px;
+//     /* Web typography/Headlines/Title 2 */
+//     font-family: 'RalewayX';
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 24px;
+//     line-height: 28px;
+//     /* identical to box height, or 117% */
+//     /* Specials/White */
+//     color: #FFFFFF;
+//     }
+    
+// .city_card_gradient{
+// position: absolute;
+// left: 8px;
+// right: 8px;
+// top: 8px;
+// bottom: 8px;
+// background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+// border-radius: 8px;
+// }
+
+// .city_card_image{
+// position: absolute;
+// left: 8px;
+// right: 8px;
+// top: 8px;
+// bottom: 8px;
+// // background: url(41710.jpg);
+// border-radius: 8px;
+// }
+
+
+
+
+
 
 //Restaurants container and cards
 
+.restaurant_section{
+    /* Auto layout */
+
+}
+
+.restaurant_section_title{
+  
+/* Web typography/Headlines/Headline */
+font-family: 'RalewayX';
+font-style: normal;
+font-weight: 600;
+font-size: 34px;
+line-height: 40px;
+/* identical to box height, or 118% */
+font-feature-settings: 'pnum' on, 'lnum' on;
+/* Specials/Black */
+color: #000000;
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.restaurant_content{}
+
+
 .restaurant_card{
 
-    height: 30vh;
+    height: 348px;
     border-radius: 8px;
     color: black;
     display: flex;
@@ -91,16 +285,10 @@ z-index: 1;
     padding: 8px;
     gap: 8px;
     width: 327px;
- 
 
     }
 
-    .image_container{
-    position: relative;
-    width: 100%;
-    height: 50%;
-    border-radius: 8px;
-    }
+   
 
     .restaurant_image{
         border-radius: 8px;
@@ -113,14 +301,28 @@ z-index: 1;
         align-items: flex-start;
         padding: 0px 0px 8px;
         gap: 16px;
+        width: 311px;
+        height: 112px;
     }
     .restaurant_info{
-        font-family: 'RalewayX Light';
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 4px 0px 0px;
+gap: 6px;
+width: 239px;
+height: 104px;
+
+font-family: 'RalewayX';
+font-style: normal;
+
 font-size: 16px;
 line-height: 22px;
-color: #272A2F;
-width: 239px;
 
+    }
+
+    .restaurant_name{
+        font-weight: 600;
     }
 
     .restaurant_rating{
@@ -129,6 +331,11 @@ width: 239px;
         align-items: flex-end;
         padding: 0px;
         gap: 8px;
+    }
+
+    .restaurant_rating_number{
+        font-weight: 600;
+    
     }
 
     .restaurant_reviews{

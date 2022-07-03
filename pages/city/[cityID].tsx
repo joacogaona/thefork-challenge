@@ -18,58 +18,34 @@ type RestaurantCardProps =  {
   address:{street:string,locality:string,postalCode:string}
   averagePrice:{amount:number,currency:string}
   aggregateRatings:{ratingValue:number,reviewCount:number}
+  offer:string
 
 } 
 
+type CitiesData = {getCities:ListedCities[]}
+type RestaurantsData = {getRestaurants:ListedRestaurants[]}
+type ListedRestaurants = { id: string
+  slug: string
+  name: string
+  photo: string
+  address: {
+    street:string
+    postalCode: string
+    locality: string
+    country: string
+  }
+  averagePrice: {amount:number, currency: string}
+  aggregateRatings: {ratingValue:number, reviewCount: number}
+  offer: String
+ }
+ type RestaurantsVars = {cityID:string}
 
+type ListedCities = {id:string;
+  name:string;
+  photo:string
+ }
 
-const CityCard  = ({id,name,photo}:CityCardProps)=>{
-  
-  return <Link href={`${id}`}>
-    <a>
-    <div  className={styles.city_card}  >
-  <p className={styles.card_title}>{name}</p>
- <div className={styles.image_gradient}/>
-<Image  src={photo} alt={name} layout="fill" objectFit='cover' className={styles.city_image}/>
-</div>
-</a>
-</Link>
-}
-
-const RestaurantCard  = ({id,slug,name,photo,address,averagePrice,aggregateRatings}:RestaurantCardProps)=>{
-
-  return <RestaurantLink restaurantID={id} restaurantSlug={slug}>
-  <div  className={styles.restaurant_card} >
-    <div className={styles.image_container}>
-      <Image src={photo} alt={name} layout="fill"  objectFit='cover' className={styles.restaurant_image}/>
-    </div>
-    <div className={styles.restaurant_content}>
-      <div className={styles.restaurant_info}>
-        <p>{name}</p>
-        <p>{address.street}</p>
-        <p>{address.postalCode} {address.locality}</p>
-        <p>{averagePrice.currency}{averagePrice.amount} average price</p>
-      </div>
-      <div className={styles.restaurant_rating}>
-        <p>{aggregateRatings.ratingValue}</p>
-      <div className={styles.restaurant_reviews}>
-        <IconChatBubble/>
-        <p>{aggregateRatings.reviewCount}</p>
-      </div>
-  
-
-    </div>
-  </div>
-  <button className={styles.restaurant_button}>book up to -30%</button>
-  
-</div>
-</RestaurantLink>
-}
-
-
-
-
-const GET_CITIES = gql`
+ const GET_CITIES = gql`
   {
     getCities{
       id
@@ -107,35 +83,53 @@ query GetRestaurants($cityID:ID!) {
 
 
 
-type CitiesData = {getCities:ListedCities[]}
-type RestaurantsData = {getRestaurants:ListedRestaurants[]}
-type ListedRestaurants = { id: string
-  slug: string
-  name: string
-  photo: string
-  address: {
-    street:string
-    postalCode: string
-    locality: string
-    country: string
-  }
-  averagePrice: {amount:number, currency: string}
-  aggregateRatings: {ratingValue:number, reviewCount: number}
-  offer: String
- }
- type RestaurantsVars = {cityID:string}
+const CityCard  = ({id,name,photo}:CityCardProps)=>{
+  
+  return <Link href={`${id}`}>
+    <a>
+    <div  className={styles.city_card}  >
+  <p className={styles.city_card_title}>{name}</p>
+ <div className={styles.city_card_gradient}/>
+<Image  src={photo} alt={name} layout='fill' objectFit='cover' className={styles.city_card_image}/>
+</div>
+</a>
+</Link>
+}
 
-type ListedCities = {id:string;
-  name:string;
-  photo:string
- }
+const RestaurantCard  = ({id,slug,name,photo,address,averagePrice,aggregateRatings,offer}:RestaurantCardProps)=>{
+
+  return <RestaurantLink restaurantID={id} restaurantSlug={slug}>
+  <div  className={styles.restaurant_card} >
+    
+      <Image src={photo} alt={name} width='311' height='168' className={styles.restaurant_image}/>
+  
+    <div className={styles.restaurant_content}>
+      <div className={styles.restaurant_info}>
+        <p className={styles.restaurant_name}>{name}</p>
+        <p >{address.street}</p>
+        <p>{address.postalCode} {address.locality}</p>
+        <p>{averagePrice.currency === 'EUR'? '\u20AC':averagePrice.currency}{averagePrice.amount} average price</p>
+      </div>
+      <div className={styles.restaurant_rating}>
+        <p className={styles.restaurant_rating_number}>{aggregateRatings.ratingValue}</p>
+      <div className={styles.restaurant_reviews}>
+        <IconChatBubble/>
+        <p>{aggregateRatings.reviewCount}</p>
+      </div>
+    </div>
+  </div>
+  <button className={styles.restaurant_button}>{offer? `book up to ${offer}`:`book`}</button>
+  
+</div>
+</RestaurantLink>
+}
 
 
 const CityPage: NextPage<CityPageProps> = (props) => {
   const {cityID} = props
   const {  loading:citiesLoading, error:citiesError,data:citiesData } = useQuery<CitiesData>(GET_CITIES);
   const {  data:restaurantData } = useQuery<RestaurantsData,RestaurantsVars>(GET_RESTAURANTS,{variables:{cityID}})
-  const [isCollapsed,setIsCollapsed] = useState(false)
+  const [isCollapsed,setIsCollapsed] = useState(true)
  
 function handleCollapse(){
 setIsCollapsed(!isCollapsed)
@@ -143,18 +137,23 @@ setIsCollapsed(!isCollapsed)
 
 const currenCityName = useMemo(() => citiesData?.getCities.find((city) => city.id === cityID)?.name ?? '', [citiesData,cityID]);
 const otherCities = useMemo(() => citiesData?.getCities.filter((city) => city.id !== cityID), [citiesData,cityID]);
-  return <div>
-    <div className={styles.header}>
-    <h1 className={styles.title}>{currenCityName}</h1> 
-    <button className={isCollapsed? styles.toggle_button_collapsed:styles.toggle_button} onClick={handleCollapse}><p>MODIFY</p><IconChevron /></button>
+  return <div className={styles.main_body}>
+    <div className={styles.title}>
+    <h1 className={styles.city_name}>{currenCityName}</h1> 
+    <button className={isCollapsed? styles.toggle_button_collapsed:styles.toggle_button} onClick={handleCollapse}>
+      <p className={styles.toggle_button_text}>modify</p>
+      <IconChevron className={styles.toggle_button_icon}/>
+      </button>
     </div>
-    <div className={isCollapsed?styles.cities_container:styles.cities_container_hidden}>
+    <div className={isCollapsed?styles.cities_section_collapsed:styles.cities_section}>
       {otherCities?.map((city)=>{
       return  <CityCard key={city.id} {...city}/>
       })}
     </div>
-    <h1>{`Restaurants in ${currenCityName}`}</h1>
+    <div className={styles.restaurant_section}>
+    <h1 className={styles.restaurant_section_title}>{`Restaurants in ${currenCityName}`}</h1>
     {restaurantData?.getRestaurants.map((restaurant)=> <RestaurantCard key={restaurant.id} {...restaurant}/>)}
+    </div>
     </div>;
 };
 
