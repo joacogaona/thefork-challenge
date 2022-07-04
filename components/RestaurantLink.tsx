@@ -17,7 +17,7 @@ const RestaurantLink: React.FC<
       href={`https://www.thefork.com/restaurant/${restaurantSlug}-r${restaurantID}`}
       target="_blank"
       rel="noopener noreferrer"
-      style={{textDecoration:"none", color: "inherit"}}
+      style={{textDecoration:"none", color: "inherit",width:'100%'}}
       {...props}
     />
   );

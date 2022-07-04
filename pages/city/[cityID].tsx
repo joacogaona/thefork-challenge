@@ -1,12 +1,13 @@
 import type { GetServerSideProps, NextPage, } from 'next';
 import { gql, useQuery } from '@apollo/client';
-import { useMemo ,useState} from 'react';
+import React,{ useMemo ,useState} from 'react';
 import styles from './CityID.module.scss'
 import IconChevron from '../../components/IconChevron';
 import IconChatBubble from '../../components/IconChatBubble';
 import Image from 'next/image'
 import Link from 'next/link'
 import RestaurantLink from '../../components/RestaurantLink'
+
 
 type CityPageProps = { cityID: string };
 type CityCardProps =  {id:string,name:string,photo:string} ;
@@ -98,12 +99,13 @@ const CityCard  = ({id,name,photo}:CityCardProps)=>{
 
 }
 
-const RestaurantCard  = ({id,slug,name,photo,address,averagePrice,aggregateRatings,offer}:RestaurantCardProps)=>{
+ const RestaurantCard  = ({id,slug,name,photo,address,averagePrice,aggregateRatings,offer}:RestaurantCardProps)=>{
 
-   
  return <div  className={styles.restaurant_card} >
     <RestaurantLink restaurantID={id} restaurantSlug={slug}>
-      <Image src={photo} alt={name} width='311' height='168' className={styles.restaurant_image}/>
+      <div className={styles.restaurant_image_container}>
+      <Image src={photo} alt={name} layout="fill" objectFit='cover' className={styles.restaurant_image}/>
+      </div>
   
     <div className={styles.restaurant_content}>
       <div className={styles.restaurant_info}>
@@ -126,6 +128,16 @@ const RestaurantCard  = ({id,slug,name,photo,address,averagePrice,aggregateRatin
 
 }
 
+// const RestaurantsSection=({ restaurantData,currenCityName }) =>{
+//   console.count('list')
+//    return <div className={styles.restaurant_section}>
+//    <h1 className={styles.restaurant_section_title}>{`Restaurants in ${currenCityName}`}</h1>
+//    <div className={styles.restaurant_content_section}>
+//    {restaurantData?.getRestaurants.map((restaurant)=> <RestaurantCard key={restaurant.id} {...restaurant}/>)}
+//    </div>
+//    </div>
+//  }
+//  const MemoizedRestaurantsSection = React.memo(RestaurantsSection)
 
 const CityPage: NextPage<CityPageProps> = (props) => {
   const {cityID} = props
@@ -158,6 +170,7 @@ const otherCities = useMemo(() => citiesData?.getCities.filter((city) => city.id
     {restaurantData?.getRestaurants.map((restaurant)=> <RestaurantCard key={restaurant.id} {...restaurant}/>)}
     </div>
     </div>
+    {/* <MemoizedRestaurantsSection restaurantData={restaurantData} currenCityName={currenCityName}/> */}
     </div>;
 };
 
