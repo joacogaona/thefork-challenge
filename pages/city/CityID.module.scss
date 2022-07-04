@@ -39,11 +39,8 @@ color: #000000;
     background: #DDF0D6;
 }
 
-@keyframes collapse {
-    from {height:100%;opacity:1}
-    to {height: 0px;opacity:0}
-  }
-  
+
+
 .toggle_button_collapsed{
     display: flex;
     flex-direction: row;
@@ -88,7 +85,7 @@ color: #589442;
 .cities_section_collapsed{
     height: 0px;
     opacity: 0;
-    animation: collapse 0.5s ;
+    animation: collapse 0.2s ;
 }
 
 @keyframes expand {
@@ -99,23 +96,32 @@ color: #589442;
 .cities_section{
     height: 100%;
     opacity: 1;
-    animation: expand 0.5s ;
+    animation: expand 0.4s ;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
 .city_card{
     position: relative;
-    width: 90%;
     height: 30vh;
     border-radius: 8px;
-    margin-top: 2rem;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
     color: white;
-    margin-left: 5%;
-    max-width: var(--container-max-width)
+    max-width: 304px;
+    width: -webkit-fill-available;
     }
+
+
 
 .city_card:hover{
     box-shadow: -1px 3px 6px rgba(0, 0, 0, 0.28);
+}
+
+.city_card_link{
+    color: inherit; 
+  text-decoration: inherit;
 }
 
 
@@ -156,7 +162,10 @@ margin-top: 2rem;
 margin-bottom: 1rem;
 }
 
-.restaurant_content{}
+.restaurant_content_section{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 
 .restaurant_card{
@@ -166,7 +175,7 @@ margin-bottom: 1rem;
     flex-direction: column;
     align-items: flex-start;
     padding: 8px;
-    gap: 8px;
+   
     }
 
 .restaurant_card:hover{

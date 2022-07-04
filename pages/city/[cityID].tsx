@@ -85,22 +85,24 @@ query GetRestaurants($cityID:ID!) {
 
 const CityCard  = ({id,name,photo}:CityCardProps)=>{
   
-  return <Link href={`${id}`}>
-    <a>
-    <div  className={styles.city_card}  >
+   return  <div  className={styles.city_card}  >
+    <Link href={`${id}`} >
+   <a className={styles.city_card_link}>
   <p className={styles.city_card_title}>{name}</p>
  <div className={styles.city_card_gradient}/>
 <Image  src={photo} alt={name} layout='fill' objectFit='cover' className={styles.city_card_image}/>
-</div>
 </a>
-</Link>
+</Link> 
+</div>
+
+
 }
 
 const RestaurantCard  = ({id,slug,name,photo,address,averagePrice,aggregateRatings,offer}:RestaurantCardProps)=>{
 
-  return <RestaurantLink restaurantID={id} restaurantSlug={slug}>
-  <div  className={styles.restaurant_card} >
-    
+   
+ return <div  className={styles.restaurant_card} >
+    <RestaurantLink restaurantID={id} restaurantSlug={slug}>
       <Image src={photo} alt={name} width='311' height='168' className={styles.restaurant_image}/>
   
     <div className={styles.restaurant_content}>
@@ -119,9 +121,9 @@ const RestaurantCard  = ({id,slug,name,photo,address,averagePrice,aggregateRatin
     </div>
   </div>
   <button className={styles.restaurant_button}>{offer? `book up to ${offer}`:`book`}</button>
-  
+  </RestaurantLink>
 </div>
-</RestaurantLink>
+
 }
 
 
@@ -152,7 +154,9 @@ const otherCities = useMemo(() => citiesData?.getCities.filter((city) => city.id
     </div>
     <div className={styles.restaurant_section}>
     <h1 className={styles.restaurant_section_title}>{`Restaurants in ${currenCityName}`}</h1>
+    <div className={styles.restaurant_content_section}>
     {restaurantData?.getRestaurants.map((restaurant)=> <RestaurantCard key={restaurant.id} {...restaurant}/>)}
+    </div>
     </div>
     </div>;
 };
