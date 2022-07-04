@@ -1,50 +1,20 @@
 .main_body{
-/*Auto-layout*/
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 0px;
-gap: 48px;
-position: absolute;
-height: 3524px;
-left: 24px;
-right: 24px;
-top: 128px;
+
 }
 
 .title{
-/*Auto-layout*/
 display: flex;
 flex-direction: row;
 align-items: flex-start;
-padding: 0px;
-gap: 30px;
-width: 327px;
-height: 48px;
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+justify-content: space-between;
 }
 
 .city_name{
-width: 159px;
-height: 40px;
-/* Web typography/Headlines/Headline */
-font-family: 'RalewayX';
-font-style: normal;
 font-weight: 600;
-font-size: 34px;
+font-size: 30px;
 line-height: 40px;
-/* identical to box height, or 118% */
-font-feature-settings: 'pnum' on, 'lnum' on;
-/* Specials/Black */
 color: #000000;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 1;
+
 }
 
 .toggle_button{
@@ -54,22 +24,26 @@ flex-grow: 1;
     align-items: center;
     padding: 13px 24px;
     gap: 8px;
-    width: 138px;
-    height: 48px;
-    /* UI/Backgrounds/Transparent */
-    border-radius: 4px;
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-       
     border: none;
     background: none;
         > p{
         display: inline;
-        }
-       
+        }  
     }
+
+.toggle_button:hover{
+    background: #F3FCF2;
+}
+
+.toggle_button:active{
+    background: #DDF0D6;
+}
+
+@keyframes collapse {
+    from {height:100%;opacity:1}
+    to {height: 0px;opacity:0}
+  }
+  
 .toggle_button_collapsed{
     display: flex;
     flex-direction: row;
@@ -77,42 +51,28 @@ flex-grow: 1;
     align-items: center;
     padding: 13px 24px;
     gap: 8px;
-    width: 138px;
-    height: 48px;
-    /* UI/Backgrounds/Transparent */
-    border-radius: 4px;
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-       
     border: none;
     background: none;
         > p{
         display: inline;
         }
-> svg{
-    transform: rotateX(180deg);
+        > svg{
+        transform: rotateX(180deg);
+        } 
 }
- 
+
+.toggle_button_collapsed:hover{
+    background: #F3FCF2;
+}
+.toggle_button_collapsed:active{
+    background: #DDF0D6;
 }
 
 .toggle_button_text{
- /* Buttons/Medium */
 font-family: 'RalewayX';
-font-style: normal;
-font-weight: 400;
 font-size: 16px;
-line-height: 22px;
-/* identical to box height, or 138% */
-text-align: right;
 text-transform: uppercase;
-/* Green/4. Green M */
 color: #589442;
-/* Inside auto layout */
-flex: none;
-order: 0;
-flex-grow: 0;
 }
 
 .toggle_button_icon{
@@ -120,15 +80,26 @@ flex-grow: 0;
 }
 //Cities container and cards/////////////////////////////////////////////////////////////
 
+@keyframes collapse {
+    from {height:100%;opacity:1}
+    to {height: 0px;opacity:0}
+  }
+
 .cities_section_collapsed{
-    display: none;
+    height: 0px;
+    opacity: 0;
+    animation: collapse 0.5s ;
 }
 
-.cities_section{
-width: 100%;
-display: flex;
-flex-direction: column;
+@keyframes expand {
+    from {height:0px;opacity:0}
+    to {height: 100%;opacity:1}
+  }
 
+.cities_section{
+    height: 100%;
+    opacity: 1;
+    animation: expand 0.5s ;
 }
 
 
@@ -138,10 +109,14 @@ flex-direction: column;
     height: 30vh;
     border-radius: 8px;
     margin-top: 2rem;
-    text-align: center;
     color: white;
     margin-left: 5%;
+    max-width: var(--container-max-width)
     }
+
+.city_card:hover{
+    box-shadow: -1px 3px 6px rgba(0, 0, 0, 0.28);
+}
 
 
 .city_card_title{
@@ -164,86 +139,7 @@ z-index: 1;
 
 .city_card_image{
     border-radius: 8px;   
-    max-height: 100%;
 }
-
-///////////////////////////////////////////////////////////
-
-// .cities_section_collapsed{
-//     display: none;
-// }
-
-// .cities_section{
-//     /* Auto layout */
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-start;
-//     padding: 0px;
-//     gap: 16px;
-//     width: 327px;
-//     height: 764px;
-//     /* Inside auto layout */
-//     flex: none;
-//     order: 1;
-//     align-self: stretch;
-//     flex-grow: 0;
-//     }
-
-// .city_card{
-//     width: 327px;
-//     height: 244px;
-//     /* Specials/White */
-//     background: #FFFFFF;
-//     /* Inside auto layout */
-//     flex: none;
-//     order: 0;
-//     align-self: stretch;
-//     flex-grow: 0;
-//     }
-
-    
-// .city_card_title{
-   
-//     position: absolute;
-//     height: 28px;
-//     left: 20px;
-//     right: 20px;
-//     bottom: 32px;
-//     /* Web typography/Headlines/Title 2 */
-//     font-family: 'RalewayX';
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 24px;
-//     line-height: 28px;
-//     /* identical to box height, or 117% */
-//     /* Specials/White */
-//     color: #FFFFFF;
-//     }
-    
-// .city_card_gradient{
-// position: absolute;
-// left: 8px;
-// right: 8px;
-// top: 8px;
-// bottom: 8px;
-// background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-// border-radius: 8px;
-// }
-
-// .city_card_image{
-// position: absolute;
-// left: 8px;
-// right: 8px;
-// top: 8px;
-// bottom: 8px;
-// // background: url(41710.jpg);
-// border-radius: 8px;
-// }
-
-
-
-
-
 
 //Restaurants container and cards
 
@@ -253,30 +149,17 @@ z-index: 1;
 }
 
 .restaurant_section_title{
-  
-/* Web typography/Headlines/Headline */
-font-family: 'RalewayX';
-font-style: normal;
 font-weight: 600;
-font-size: 34px;
-line-height: 40px;
-/* identical to box height, or 118% */
-font-feature-settings: 'pnum' on, 'lnum' on;
-/* Specials/Black */
+font-size: 30px;
 color: #000000;
-/* Inside auto layout */
-flex: none;
-order: 0;
-align-self: stretch;
-flex-grow: 0;
+margin-top: 2rem;
+margin-bottom: 1rem;
 }
 
 .restaurant_content{}
 
 
 .restaurant_card{
-
-    height: 348px;
     border-radius: 8px;
     color: black;
     display: flex;
@@ -284,10 +167,12 @@ flex-grow: 0;
     align-items: flex-start;
     padding: 8px;
     gap: 8px;
-    width: 327px;
-
     }
 
+.restaurant_card:hover{
+    box-shadow: -1px 3px 6px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+}
    
 
     .restaurant_image{
@@ -301,8 +186,7 @@ flex-grow: 0;
         align-items: flex-start;
         padding: 0px 0px 8px;
         gap: 16px;
-        width: 311px;
-        height: 112px;
+        width: 100%;
     }
     .restaurant_info{
 display: flex;
@@ -310,13 +194,6 @@ flex-direction: column;
 align-items: flex-start;
 padding: 4px 0px 0px;
 gap: 6px;
-width: 239px;
-height: 104px;
-
-font-family: 'RalewayX';
-font-style: normal;
-
-font-size: 16px;
 line-height: 22px;
 
     }
@@ -353,19 +230,18 @@ flex-direction: row;
 justify-content: center;
 align-items: center;
 padding: 9px 12px;
-gap: 8px;
-width: 311px;
-height: 36px;
+width: 100%;
 background: #589442;
 border-radius: 2px;
 border: none;
-
-font-family: 'RalewayX';
-font-style: normal;
-font-weight: 400;
 font-size: 13px;
 line-height: 18px;
 text-align: center;
 text-transform: uppercase;
 color: #FFFFFF;
+
+    }
+
+    .restaurant_button:hover{
+        background: #437132;
     }

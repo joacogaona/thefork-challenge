@@ -36,7 +36,7 @@ type ListedRestaurants = { id: string
   }
   averagePrice: {amount:number, currency: string}
   aggregateRatings: {ratingValue:number, reviewCount: number}
-  offer: String
+  offer: string
  }
  type RestaurantsVars = {cityID:string}
 
@@ -147,7 +147,7 @@ const otherCities = useMemo(() => citiesData?.getCities.filter((city) => city.id
     </div>
     <div className={isCollapsed?styles.cities_section_collapsed:styles.cities_section}>
       {otherCities?.map((city)=>{
-      return  <CityCard key={city.id} {...city}/>
+      return  <CityCard key={city.id} {...city} />
       })}
     </div>
     <div className={styles.restaurant_section}>
