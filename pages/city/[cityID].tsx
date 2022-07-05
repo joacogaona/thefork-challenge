@@ -2,27 +2,12 @@ import type { GetServerSideProps, NextPage, } from 'next';
 import { gql, useQuery } from '@apollo/client';
 import React,{ useMemo ,useState} from 'react';
 import styles from './CityID.module.scss'
-import IconChevron from '../../components/IconChevron';
-import IconChatBubble from '../../components/IconChatBubble';
-import Image from 'next/image'
-import Link from 'next/link'
-import RestaurantLink from '../../components/RestaurantLink'
+import CityCard from '../../components/CityCard'
+import RestaurantCard from '../../components/RestaurantCard'
+import GhostButton from '../../components/GhostButton'
 
 
 type CityPageProps = { cityID: string };
-type CityCardProps =  {id:string,name:string,photo:string} ;
-type RestaurantCardProps =  {
-  id:string
-  slug:string
-  name:string
-  photo:string
-  address:{street:string,locality:string,postalCode:string}
-  averagePrice:{amount:number,currency:string}
-  aggregateRatings:{ratingValue:number,reviewCount:number}
-  offer:string
-
-} 
-
 type CitiesData = {getCities:ListedCities[]}
 type RestaurantsData = {getRestaurants:ListedRestaurants[]}
 type ListedRestaurants = { id: string
@@ -82,52 +67,6 @@ query GetRestaurants($cityID:ID!) {
   }
 `;
 
-
-
-const CityCard  = ({id,name,photo}:CityCardProps)=>{
-  
-   return  <div  className={styles.city_card}  >
-    <Link href={`${id}`} >
-   <a className={styles.city_card_link}>
-  <p className={styles.city_card_title}>{name}</p>
- <div className={styles.city_card_gradient}/>
-<Image  src={photo} alt={name} layout='fill' objectFit='cover' className={styles.city_card_image}/>
-</a>
-</Link> 
-</div>
-
-
-}
-
- const RestaurantCard  = ({id,slug,name,photo,address,averagePrice,aggregateRatings,offer}:RestaurantCardProps)=>{
-
- return <div  className={styles.restaurant_card} >
-    <RestaurantLink restaurantID={id} restaurantSlug={slug}>
-      <div className={styles.restaurant_image_container}>
-      <Image src={photo} alt={name} layout="fill" objectFit='cover' className={styles.restaurant_image}/>
-      </div>
-  
-    <div className={styles.restaurant_content}>
-      <div className={styles.restaurant_info}>
-        <p className={styles.restaurant_name}>{name}</p>
-        <p >{address.street}</p>
-        <p>{address.postalCode} {address.locality}</p>
-        <p>{averagePrice.currency === 'EUR'? '\u20AC':averagePrice.currency}{averagePrice.amount} average price</p>
-      </div>
-      <div className={styles.restaurant_rating}>
-        <p className={styles.restaurant_rating_number}>{aggregateRatings.ratingValue}</p>
-      <div className={styles.restaurant_reviews}>
-        <IconChatBubble/>
-        <p>{aggregateRatings.reviewCount}</p>
-      </div>
-    </div>
-  </div>
-  <button className={styles.restaurant_button}>{offer? `book up to ${offer}`:`book`}</button>
-  </RestaurantLink>
-</div>
-
-}
-
 // const RestaurantsSection=({ restaurantData,currenCityName }) =>{
 //   console.count('list')
 //    return <div className={styles.restaurant_section}>
@@ -151,13 +90,11 @@ setIsCollapsed(!isCollapsed)
 
 const currenCityName = useMemo(() => citiesData?.getCities.find((city) => city.id === cityID)?.name ?? '', [citiesData,cityID]);
 const otherCities = useMemo(() => citiesData?.getCities.filter((city) => city.id !== cityID), [citiesData,cityID]);
+
   return <div className={styles.main_body}>
     <div className={styles.title}>
     <h1 className={styles.city_name}>{currenCityName}</h1> 
-    <button className={isCollapsed? styles.toggle_button_collapsed:styles.toggle_button} onClick={handleCollapse}>
-      <p className={styles.toggle_button_text}>modify</p>
-      <IconChevron className={styles.toggle_button_icon}/>
-      </button>
+      <GhostButton isCollapsed={isCollapsed} handleClick={handleCollapse} />
     </div>
     <div className={isCollapsed?styles.cities_section_collapsed:styles.cities_section}>
       {otherCities?.map((city)=>{

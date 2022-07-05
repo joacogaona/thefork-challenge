@@ -1,0 +1,65 @@
+
+
+.toggle_button_collapsed:disabled{
+color: #959BA7 ; 
+}
+
+.toggle_button_collapsed{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 24px;
+    gap: 8px;
+    border: none;
+    background: none;
+    font-family: 'RalewayX';
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #589442;     
+}
+
+.toggle_button_collapsed:hover{
+    background: #F3FCF2;
+}
+.toggle_button_collapsed:active{
+    background: #DDF0D6;
+}
+
+.toggle_button_collapsed:focus{
+    background: #F3FCF2;
+    border: 4px solid #B8E0AE;
+
+    }
+
+.toggle_button{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 24px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-family: 'RalewayX';
+    color: #589442;
+    text-transform: uppercase;
+    > svg{
+    transform: rotateX(180deg);
+        } 
+        }
+    
+    .toggle_button:hover{
+        background: #F3FCF2;
+    }
+    
+    .toggle_button:active{
+        background: #DDF0D6;
+    }
+    
+    .toggle_button:focus{
+    background: #F3FCF2;
+    border: 4px solid #B8E0AE;
+    
+    }
