@@ -1,88 +1,142 @@
-.main_body{
-
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.title{
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-justify-content: space-between;
+.city_name {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 40px;
+  color: #000000;
 }
 
-.city_name{
-font-weight: 600;
-font-size: 30px;
-line-height: 40px;
-color: #000000;
-
+.cities_section_collapsed {
+  height: 0px;
+  opacity: 0;
+  animation: collapseDesktop 0.5s;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  justify-items: center;
+  margin-top: 1rem;
 }
 
-
-//Cities container and cards/////////////////////////////////////////////////////////////
-
-@keyframes collapse {
-    from {height:100%;opacity:1}
-    to {height: 0px;opacity:0}
-  }
-
-.cities_section_collapsed{
-    // height: 0px;
-    // opacity: 0;
-    // animation: collapse 0.2s ;
-    display: none;
+.cities_section {
+  opacity: 1;
+  animation: expandDesktop 0.5s;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  justify-items: center;
+  margin-top: 1rem;
 }
 
-@keyframes expand {
-    from {height:0px;opacity:0}
-    to {height: 100%;opacity:1}
-  }
-
-.cities_section{
-    // height: 100%;
-    // opacity: 1;
-    // animation: expand 0.4s ;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.restaurant_section_title {
+  font-weight: 600;
+  font-size: 30px;
+  color: #000000;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
-
-
-
-//Restaurants container and cards
-
-.restaurant_section{
-    /* Auto layout */
-
-}
-
-.restaurant_section_title{
-font-weight: 600;
-font-size: 30px;
-color: #000000;
-margin-top: 2rem;
-margin-bottom: 1rem;
-}
-
-.restaurant_content_section{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-    justify-items: center;
+.restaurant_content_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  justify-items: center;
 }
 
 @media screen and (max-width: 768px) {
-     
-    .restaurant_content_section{
-        grid-template-columns: 1fr;
-
-    }
+  .restaurant_content_section {
+    grid-template-columns: 1fr;
   }
-
-  @media screen and (min-width: 768px) and (max-width: 992px) {
-    .restaurant_content_section {
-        grid-template-columns: 1fr 1fr;
-    }
-   
+  .cities_section {
+    grid-template-columns: 1fr;
+    animation: expandMobile 0.5s;
   }
+  .cities_section_collapsed {
+    grid-template-columns: 1fr;
+    animation: collapseMobile 0.5s;
+  }
+}
 
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .restaurant_content_section {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cities_section {
+    grid-template-columns: 1fr 1fr;
+    animation: expandTablet 0.5s;
+  }
+  .cities_section_collapsed {
+    grid-template-columns: 1fr 1fr;
+    animation: collapseTablet 0.5s;
+  }
+}
+
+@keyframes collapseDesktop {
+  from {
+    height: 250px;
+    opacity: 1;
+  }
+  to {
+    height: 0px;
+    opacity: 0;
+  }
+}
+
+@keyframes expandDesktop {
+  from {
+    height: 0px;
+    opacity: 0;
+  }
+  to {
+    height: 250px;
+    opacity: 1;
+  }
+}
+
+@keyframes collapseTablet {
+  from {
+    height: 520px;
+    opacity: 1;
+  }
+  to {
+    height: 0px;
+    opacity: 0;
+  }
+}
+
+@keyframes expandTablet {
+  from {
+    height: 0px;
+    opacity: 0;
+  }
+  to {
+    height: 520px;
+    opacity: 1;
+  }
+}
+@keyframes collapseMobile {
+  from {
+    height: 790px;
+    opacity: 1;
+  }
+  to {
+    height: 0px;
+    opacity: 0;
+  }
+}
+
+@keyframes expandMobile {
+  from {
+    height: 0px;
+    opacity: 0;
+  }
+  to {
+    height: 790px;
+    opacity: 1;
+  }
+}

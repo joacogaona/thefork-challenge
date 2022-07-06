@@ -27,9 +27,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={apolloClient}>
       <Head>
-        <title>TheFork - Front-end exercics</title>
+        <title>Book best restaurants in Europe - The Fork</title>
         <link rel="icon" href="/favicon.ico" />
-        <link
+        {/* <link
           rel="preload"
           as="font"
           type="font/woff2"
@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           as="font"
           type="font/woff2"
           href="/fonts/RalewayX_semiBold.woff2"
-        ></link>
+        ></link> */}
       </Head>
       <header className={styles.header}>
         <Link href="/">

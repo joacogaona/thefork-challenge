@@ -1,0 +1,84 @@
+.toggle_button_collapsed:disabled {
+  color: #959ba7;
+}
+
+.toggle_button_collapsed {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 24px;
+  gap: 8px;
+  border: 4px solid white;
+  background: none;
+  font-family: 'RalewayX';
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #589442;
+  > svg {
+    transform: rotateX(0deg);
+    animation: rotateIconReverse 0.5s;
+  }
+}
+
+.toggle_button_collapsed:hover {
+  background: #f3fcf2;
+}
+.toggle_button_collapsed:active {
+  background: #ddf0d6;
+}
+
+.toggle_button_collapsed:focus {
+  background: #f3fcf2;
+  border: 4px solid #b8e0ae;
+}
+
+.toggle_button {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-family: 'RalewayX';
+  color: #589442;
+  text-transform: uppercase;
+  > svg {
+    transform: rotateX(180deg);
+    animation: rotateIcon 0.5s;
+  }
+}
+
+.toggle_button:hover {
+  background: #f3fcf2;
+}
+
+.toggle_button:active {
+  background: #ddf0d6;
+}
+
+.toggle_button:focus {
+  background: #f3fcf2;
+  border: 4px solid #b8e0ae;
+}
+
+@keyframes rotateIcon {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(180deg);
+  }
+}
+
+@keyframes rotateIconReverse {
+  from {
+    transform: rotateX(180deg);
+  }
+  to {
+    transform: rotateX(0deg);
+  }
+}
